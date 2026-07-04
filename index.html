@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Student Mind — энергоэффективная среда для подготовки к университетским экзаменам. PDF, флешкарты FSRS, mind-map и AI-помощники в одном окне." />
+  <title>Student Mind — Vibe studying!</title>
+  <link rel="icon" href="assets/icon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="three-canvas" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">
+      <img src="assets/icon.png" alt="" width="32" height="32" />
+      <span>Student Mind</span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Возможности</a>
+      <a href="#download">Скачать</a>
+    </div>
+    <a href="#download" class="nav-cta">Скачать бесплатно</a>
+  </nav>
+
+  <header class="hero" id="hero">
+    <div class="hero-badge reveal">
+      <span class="pulse-dot"></span>
+      v1.3.0 — Desktop для Windows
+    </div>
+    <h1 class="hero-title reveal">
+      <span class="gradient-text">Student Mind</span>
+    </h1>
+    <p class="hero-slogan reveal">
+      Vibe-coding? <span class="gold-text">Vibe studying!</span>
+    </p>
+    <p class="hero-desc reveal">
+      Учеба, подкрепленная наукой и AI: выведи свою подготовку на новый уровень!
+    </p>
+    <div class="hero-actions reveal">
+      <a href="#download" class="btn btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Скачать для Windows
+      </a>
+    </div>
+    <div class="hero-stats reveal">
+      <div class="stat">
+        <span class="stat-value">Планируй</span>
+        <span class="stat-label">встроенный планер</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-value">Изучай</span>
+        <span class="stat-label">флешкарточки и ИИ</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-value">Прогрессируй</span>
+        <span class="stat-label">отслеживай прогресс</span>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </header>
+
+  <section class="marquee-section" aria-hidden="true">
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>PDF + DJVU</span><span>•</span>
+        <span>Flashcards FSRS</span><span>•</span>
+        <span>Mind Map</span><span>•</span>
+        <span>Claude / Perplexity</span><span>•</span>
+        <span>LaTeX KaTeX</span><span>•</span>
+        <span>Anki Export</span><span>•</span>
+        <span>Examiner Agent</span><span>•</span>
+        <span>Floating Timer</span><span>•</span>
+        <span>PDF + DJVU</span><span>•</span>
+        <span>Flashcards FSRS</span><span>•</span>
+        <span>Mind Map</span><span>•</span>
+        <span>Claude / Perplexity</span><span>•</span>
+        <span>LaTeX KaTeX</span><span>•</span>
+        <span>Anki Export</span><span>•</span>
+        <span>Examiner Agent</span><span>•</span>
+        <span>Floating Timer</span><span>•</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Почему Student Mind</span>
+        <h2>Учёба в <span class="gradient-text">одном потоке</span></h2>
+        <p>Не переключайся между десятком вкладок. Аутентичная среда для учебы — максимизируй свою продуктивность.</p>
+      </div>
+
+      <div class="features-grid">
+        <article class="feature-card reveal" data-tilt>
+          <div class="feature-icon red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <h3>Библиотека</h3>
+          <p>Загружай все материалы для учебы: делай заметки, спрашивай у AI, конспектируй.</p>
+          <ul class="feature-tags">
+            <li>Snip → карточка</li>
+            <li>Рисование</li>
+            <li>Закладки</li>
+          </ul>
+        </article>
+
+        <article class="feature-card reveal" data-tilt>
+          <div class="feature-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3>Флешкарточки</h3>
+          <p>Всемирноизвестный метод закрепления и повторения материала — доступнее и проще, как никогда: поддержка LaTeX, интервальное повторение.</p>
+          <ul class="feature-tags">
+            <li>KaTeX</li>
+            <li>Anki .apkg</li>
+            <li>FSRS</li>
+          </ul>
+        </article>
+
+        <article class="feature-card reveal" data-tilt>
+          <div class="feature-icon cyan">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="8" r="2"/><circle cx="20" cy="8" r="2"/><circle cx="4" cy="16" r="2"/><circle cx="20" cy="16" r="2"/><line x1="9.5" y1="10.5" x2="5.5" y2="9"/><line x1="14.5" y1="10.5" x2="18.5" y2="9"/><line x1="9.5" y1="13.5" x2="5.5" y2="15"/><line x1="14.5" y1="13.5" x2="18.5" y2="15"/></svg>
+          </div>
+          <h3>Майнд-мап</h3>
+          <p>Интерактивный граф, хорошо представляющий структуру материала. Создавай и изучай глубинные взаимосвязи между понятиями — или просто попроси AI сделать карту для тебя, основываясь на документах твоего проекта.</p>
+          <ul class="feature-tags">
+            <li>Auto-extract</li>
+            <li>Drag & drop</li>
+            <li>Bulk edit</li>
+          </ul>
+        </article>
+
+        <article class="feature-card reveal" data-tilt>
+          <div class="feature-icon gold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4V11h4a2 2 0 0 1 2 2v1h-2v6H8v-6H6v-1a2 2 0 0 1 2-2h4V9.4C9.8 8.8 9 7.5 9 6a4 4 0 0 1 3-3.9"/><circle cx="9" cy="6" r="1" fill="currentColor"/><circle cx="15" cy="6" r="1" fill="currentColor"/></svg>
+          </div>
+          <h3>Твой AI</h3>
+          <p>Без лишних затрат и ключей API: заходи в свою собственную подписку в Anthropic, Perplexity, Deepseek или во все сразу — Student Mind сохранит все вопросы и ответы от любой модели в базу данных.</p>
+          <ul class="feature-tags">
+            <li>Claude</li>
+            <li>Perplexity</li>
+            <li>Hermes WSL</li>
+          </ul>
+        </article>
+
+        <article class="feature-card reveal" data-tilt>
+          <div class="feature-icon red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          </div>
+          <h3>Планер</h3>
+          <p>Спланируй свою подготовку или делегируй это AI. Все твои учебные задачи в одном месте.</p>
+          <ul class="feature-tags">
+            <li>Anthropic API</li>
+            <li>Exam prep</li>
+            <li>Adaptive</li>
+          </ul>
+        </article>
+
+        <article class="feature-card reveal" data-tilt>
+          <div class="feature-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Демонстрации</h3>
+          <p>Попроси AI создать для тебя демонстрацию — все анимации нативно встраиваются в приложение и сохраняются в отдельной вкладке.</p>
+          <ul class="feature-tags">
+            <li>Per-project</li>
+            <li>Planner</li>
+            <li>Results</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="workflow">
+    <div class="container">
+      <div class="workflow-layout">
+        <div class="workflow-text reveal">
+          <span class="section-tag">Workflow</span>
+          <h2>От PDF до <span class="gradient-text">экзамена</span></h2>
+          <div class="workflow-steps">
+            <div class="workflow-step">
+              <span class="step-num">01</span>
+              <div>
+                <h4>Читай и выделяй</h4>
+                <p>Открой PDF, выдели формулу ножницами — получи флешкарту за секунду.</p>
+              </div>
+            </div>
+            <div class="workflow-step">
+              <span class="step-num">02</span>
+              <div>
+                <h4>Спрашивай AI</h4>
+                <p>Claude объясняет тему — Student Mind автоматически добавляет понятия в mind-map.</p>
+              </div>
+            </div>
+            <div class="workflow-step">
+              <span class="step-num">03</span>
+              <div>
+                <h4>Повторяй умно</h4>
+                <p>FSRS подскажет, когда повторить. Экспортируй в Anki для мобильного повторения.</p>
+              </div>
+            </div>
+            <div class="workflow-step">
+              <span class="step-num">04</span>
+              <div>
+                <h4>Сдай экзамен</h4>
+                <p>Агент-экзаменатор проверит знания и найдёт слабые места до реального экзамена.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="workflow-visual reveal">
+          <img src="assets/features-slide.jpg" alt="Student Mind — PDF, флешкарты и mind-map в одном окне" loading="lazy" />
+          <div class="visual-glow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-compare">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Сравнение</span>
+        <h2>Не ещё один <span class="gradient-text">Notion</span></h2>
+      </div>
+      <div class="compare-table reveal">
+        <div class="compare-row compare-header">
+          <span></span>
+          <span>Student Mind</span>
+          <span>Браузер + 10 вкладок</span>
+        </div>
+        <div class="compare-row">
+          <span>Размер</span>
+          <span class="check">~10 МБ</span>
+          <span class="cross">Гигабайты RAM</span>
+        </div>
+        <div class="compare-row">
+          <span>Данные</span>
+          <span class="check">Локально, SQLite</span>
+          <span class="cross">Облако, подписки</span>
+        </div>
+        <div class="compare-row">
+          <span>LaTeX</span>
+          <span class="check">KaTeX нативно</span>
+          <span class="cross">Костыли</span>
+        </div>
+        <div class="compare-row">
+          <span>Mind-map из AI</span>
+          <span class="check">Автоматически</span>
+          <span class="cross">Вручную</span>
+        </div>
+        <div class="compare-row">
+          <span>FSRS</span>
+          <span class="check">Встроен</span>
+          <span class="cross">Anki отдельно</span>
+        </div>
+        <div class="compare-row">
+          <span>AI-сессии</span>
+          <span class="check">Ваша авторизация</span>
+          <span class="cross">API-ключи</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-download" id="download">
+    <div class="container">
+      <div class="download-card reveal">
+        <div class="download-glow" aria-hidden="true"></div>
+        <div class="download-content">
+          <img src="assets/icon.png" alt="Student Mind" class="download-icon" width="80" height="80" />
+          <h2>Скачай <span class="gradient-text">Student Mind</span></h2>
+          <p class="download-version">Версия 1.3.0 · Windows x64 · MIT License</p>
+          <p class="download-desc">
+            Бесплатно. Без подписок. Ваши проекты, карточки и mind-map хранятся локально
+            в <code>%APPDATA%\io.studentmind.app\</code>
+          </p>
+          <div class="download-buttons">
+            <a href="https://github.com/VladislavNadzhip/student-mind/releases/latest" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Скачать с GitHub Releases
+            </a>
+            <a href="https://github.com/VladislavNadzhip/student-mind" class="btn btn-ghost btn-lg" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              Исходный код
+            </a>
+          </div>
+          <div class="download-requirements">
+            <h4>Системные требования</h4>
+            <ul>
+              <li>Windows 10/11 (x64)</li>
+              <li>Microsoft Edge WebView2 (обычно уже установлен)</li>
+              <li>Опционально: WSL 2 для Hermes-слота</li>
+              <li>Опционально: Anthropic API key для Examiner</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-stack">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Стек</span>
+        <h2>Построено на <span class="gradient-text">проверенных</span> технологиях</h2>
+      </div>
+      <div class="stack-grid reveal">
+        <div class="stack-item"><span class="stack-name">Tauri 2</span><span class="stack-desc">~10 МБ, Rust backend</span></div>
+        <div class="stack-item"><span class="stack-name">React 18</span><span class="stack-desc">TypeScript + Vite</span></div>
+        <div class="stack-item"><span class="stack-name">SQLite</span><span class="stack-desc">Локальная БД</span></div>
+        <div class="stack-item"><span class="stack-name">ts-fsrs</span><span class="stack-desc">Spaced repetition</span></div>
+        <div class="stack-item"><span class="stack-name">React Flow</span><span class="stack-desc">Mind-map граф</span></div>
+        <div class="stack-item"><span class="stack-name">KaTeX</span><span class="stack-desc">LaTeX рендер</span></div>
+        <div class="stack-item"><span class="stack-name">pdf.js</span><span class="stack-desc">PDF viewer</span></div>
+        <div class="stack-item"><span class="stack-name">Zustand</span><span class="stack-desc">State management</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/icon.png" alt="" width="28" height="28" />
+        <span>Student Mind</span>
+      </div>
+      <p class="footer-slogan">Vibe-coding? Vibe studying!</p>
+      <div class="footer-links">
+        <a href="https://github.com/VladislavNadzhip/student-mind" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/VladislavNadzhip/student-mind/releases" target="_blank" rel="noopener">Releases</a>
+        <a href="#download">Скачать</a>
+      </div>
+      <p class="footer-copy">MIT License · 2026</p>
+    </div>
+  </footer>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="three-bg.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
