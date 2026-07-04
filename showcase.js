@@ -235,4 +235,128 @@ if (chatDemo) {
   io.observe(chatDemo);
 }
 
+/* ── Синапсы: нейронный узор внутри плашек (как фон, но в цвете плашки) ── */
+(function initSynapses() {
+  const PALETTES = {
+    red: ['#ef4444', '#f87171'],
+    blue: ['#3b82f6', '#60a5fa'],
+    cyan: ['#22d3ee', '#67e8f9'],
+    gold: ['#fbbf24', '#fcd34d'],
+    multi: ['#ef4444', '#3b82f6', '#22d3ee', '#fbbf24'],
+  };
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const states = [];
+
+  const hexToRgb = (hex) => {
+    const n = parseInt(hex.slice(1), 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  };
+
+  document.querySelectorAll('.synapse-canvas').forEach((canvas) => {
+    const colors = (PALETTES[canvas.dataset.color] || PALETTES.multi).map(hexToRgb);
+    const state = { canvas, ctx: canvas.getContext('2d'), pts: [], visible: true };
+
+    const resize = () => {
+      const r = canvas.getBoundingClientRect();
+      const w = Math.max(1, Math.round(r.width));
+      const h = Math.max(1, Math.round(r.height));
+      if (w === canvas.width && h === canvas.height) return;
+      canvas.width = w;
+      canvas.height = h;
+      const n = Math.min(44, Math.max(14, Math.round((w * h) / 6200)));
+      state.pts = Array.from({ length: n }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        c: colors[Math.floor(Math.random() * colors.length)],
+      }));
+      draw(state);
+    };
+
+    resize();
+    new ResizeObserver(resize).observe(canvas);
+    new IntersectionObserver((es) => es.forEach((en) => { state.visible = en.isIntersecting; }))
+      .observe(canvas);
+    states.push(state);
+  });
+
+  function draw(s) {
+    const { ctx, canvas, pts } = s;
+    const w = canvas.width, h = canvas.height;
+    const link = Math.min(110, Math.max(70, w / 5));
+    ctx.clearRect(0, 0, w, h);
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+        const d = Math.hypot(dx, dy);
+        if (d > link) continue;
+        const a = (1 - d / link) * 0.42;
+        const [r, g, b] = pts[i].c;
+        ctx.strokeStyle = `rgba(${r},${g},${b},${a})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(pts[i].x, pts[i].y);
+        ctx.lineTo(pts[j].x, pts[j].y);
+        ctx.stroke();
+      }
+    }
+    pts.forEach((p) => {
+      const [r, g, b] = p.c;
+      ctx.fillStyle = `rgba(${r},${g},${b},0.9)`;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 2.1, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  }
+
+  function step(s) {
+    const w = s.canvas.width, h = s.canvas.height;
+    s.pts.forEach((p) => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < -8) p.x = w + 8; else if (p.x > w + 8) p.x = -8;
+      if (p.y < -8) p.y = h + 8; else if (p.y > h + 8) p.y = -8;
+    });
+  }
+
+  if (!reduceMotion && states.length) {
+    (function loop() {
+      states.forEach((s) => { if (s.visible) { step(s); draw(s); } });
+      requestAnimationFrame(loop);
+    })();
+  }
+})();
+
+/* ── Модалки: бета-тест и сообщество ── */
+(function initModals() {
+  const openModal = (ov) => {
+    ov.classList.add('open');
+    ov.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeModal = (ov) => {
+    ov.classList.remove('open');
+    ov.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('[data-modal]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const ov = document.getElementById('modal-' + btn.dataset.modal);
+      if (ov) openModal(ov);
+    });
+  });
+
+  document.querySelectorAll('.modal-overlay').forEach((ov) => {
+    ov.addEventListener('click', (e) => { if (e.target === ov) closeModal(ov); });
+    ov.querySelectorAll('[data-close]').forEach((b) => b.addEventListener('click', () => closeModal(ov)));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.modal-overlay.open').forEach(closeModal);
+  });
+})();
+
 renderStaticMath();
