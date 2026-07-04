@@ -37,9 +37,10 @@ student-mind-website/
 ├── index.html          — главная страница
 ├── styles.css          — стили, градиенты, анимации
 ├── three-bg.js         — Three.js фон (mind-map частицы)
+├── showcase.js         — живые демо: флешкарта, майнд-мапа, LaTeX, чат Амадеуса
 ├── presentation.js     — автопрезентация (canvas-слайды)
 ├── main.js             — scroll-анимации, tilt-эффекты
-└── assets/             — иконка, промо-изображения
+└── assets/             — иконка
 ```
 
 ## Ссылки на скачивание

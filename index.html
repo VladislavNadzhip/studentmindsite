@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Student Mind — энергоэффективная среда для подготовки к университетским экзаменам. PDF, флешкарты FSRS, mind-map и AI-помощники в одном окне." />
+  <meta name="description" content="Student Mind — приложение для подготовки к экзаменам: читай PDF, конспектируй в один клик, повторяй по карточкам, строй майнд-мапы и готовься вместе с ассистентом Амадеусом." />
   <title>Student Mind — Vibe studying!</title>
   <link rel="icon" href="assets/icon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -192,36 +193,169 @@
             <div class="workflow-step">
               <span class="step-num">01</span>
               <div>
-                <h4>Читай и выделяй</h4>
-                <p>Открой PDF, выдели формулу ножницами — получи флешкарту за секунду.</p>
+                <h4>Закинь материалы</h4>
+                <p>Лекции, учебники, конспекты — всё в одной библиотеке. Открыл — и читаешь, ничего не настраивая.</p>
               </div>
             </div>
             <div class="workflow-step">
               <span class="step-num">02</span>
               <div>
-                <h4>Спрашивай AI</h4>
-                <p>Claude объясняет тему — Student Mind автоматически добавляет понятия в mind-map.</p>
+                <h4>Конспектируй на лету</h4>
+                <p>Увидел важное — выделил, и это уже карточка. Конспект собирается сам, пока ты читаешь.</p>
               </div>
             </div>
             <div class="workflow-step">
               <span class="step-num">03</span>
               <div>
-                <h4>Повторяй умно</h4>
-                <p>FSRS подскажет, когда повторить. Экспортируй в Anki для мобильного повторения.</p>
+                <h4>Повторяй по чуть-чуть</h4>
+                <p>Приложение само подскажет, что и когда повторить. Десять минут в день — и ничего не забывается.</p>
               </div>
             </div>
             <div class="workflow-step">
               <span class="step-num">04</span>
               <div>
-                <h4>Сдай экзамен</h4>
-                <p>Агент-экзаменатор проверит знания и найдёт слабые места до реального экзамена.</p>
+                <h4>Приходи готовым</h4>
+                <p>К экзамену у тебя карта всей темы, колода карточек и спокойная уверенность, что ничего не упущено.</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="workflow-visual reveal">
-          <img src="assets/features-slide.jpg" alt="Student Mind — PDF, флешкарты и mind-map в одном окне" loading="lazy" />
-          <div class="visual-glow"></div>
+        <div class="workflow-visual-card reveal">
+          <div class="flashcard-scene">
+            <div class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="Перевернуть карточку">
+              <div class="flashcard-face flashcard-front">
+                <span class="flashcard-deck">Матанализ · Колода «Экзамен»</span>
+                <p class="flashcard-q">Сформулируй теорему Лагранжа о среднем значении</p>
+                <span class="flashcard-hint">нажми, чтобы перевернуть</span>
+              </div>
+              <div class="flashcard-face flashcard-back">
+                <span class="flashcard-deck">Ответ</span>
+                <p class="flashcard-a">Если <span data-katex="f"></span> непрерывна на <span data-katex="[a,b]"></span> и дифференцируема на <span data-katex="(a,b)"></span>, то найдётся <span data-katex="c \in (a,b)"></span>:</p>
+                <div class="flashcard-formula" data-katex="f(b) - f(a) = f'(c)\,(b-a)" data-display="true"></div>
+                <div class="flashcard-grades" aria-hidden="true">
+                  <span class="grade grade-again">Забыл</span>
+                  <span class="grade grade-hard">Трудно</span>
+                  <span class="grade grade-good">Хорошо</span>
+                  <span class="grade grade-easy">Легко</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="visual-caption">Так выглядит повторение: вопрос → вспомнил → оценил себя. Всё.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="mindmap">
+    <div class="container">
+      <div class="workflow-layout">
+        <div class="workflow-text reveal">
+          <span class="section-tag">Mind Map</span>
+          <h2>Предмет — это <span class="gradient-text">карта</span>, а не список страниц</h2>
+          <p class="showcase-desc">
+            В тетради конспект — просто страницы подряд. А в голове темы связаны друг с другом.
+            Майнд-мап в Student Mind показывает предмет целиком: что из чего следует,
+            что с чем связано и где у тебя пробел.
+          </p>
+          <p class="showcase-desc">
+            Собирай карту руками — или попроси AI построить её по документам проекта,
+            а потом просто наводи порядок: двигай узлы, соединяй понятия, дополняй заметками.
+          </p>
+          <ul class="showcase-list">
+            <li>Карта строится по твоим PDF автоматически</li>
+            <li>Каждый узел — понятие с описанием и формулами</li>
+            <li>Перед экзаменом видно всю тему на одном экране</li>
+          </ul>
+        </div>
+        <div class="mindmap-demo reveal">
+          <div class="mindmap-window">
+            <div class="demo-titlebar">
+              <span class="dot red"></span><span class="dot gold"></span><span class="dot green"></span>
+              <span class="demo-title">Mind Map — Производная</span>
+            </div>
+            <svg id="mindmap-svg" viewBox="0 0 560 400" aria-label="Интерактивная майнд-мапа"></svg>
+          </div>
+          <p class="visual-caption">Живой кусочек карты — потаскай узлы за собой.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="latex">
+    <div class="container">
+      <div class="workflow-layout">
+        <div class="latex-demo reveal">
+          <div class="latex-window">
+            <div class="demo-titlebar">
+              <span class="dot red"></span><span class="dot gold"></span><span class="dot green"></span>
+              <span class="demo-title">card.tex</span>
+            </div>
+            <pre class="latex-code"><code id="latex-code"></code><span class="latex-cursor" id="latex-cursor"></span></pre>
+            <div class="latex-preview">
+              <span class="latex-preview-label">рендер</span>
+              <div id="latex-preview-out"></div>
+            </div>
+          </div>
+        </div>
+        <div class="workflow-text reveal">
+          <span class="section-tag">LaTeX</span>
+          <h2>Формулы <span class="gradient-text">без боли</span></h2>
+          <p class="showcase-desc">
+            Пиши формулу текстом — она мгновенно превращается в настоящую математику.
+            В карточках, заметках, на карте — везде. Никаких скриншотов из учебника
+            и вставленных вкривь картинок.
+          </p>
+          <p class="showcase-desc">
+            Печатаешь так же быстро, как обычный текст, а конспект выглядит как хороший учебник.
+            Слева — живой пример: код набирается сам, рендер появляется сразу.
+          </p>
+          <ul class="showcase-list">
+            <li>Мгновенный рендер прямо при наборе</li>
+            <li>Работает в карточках, заметках и майнд-мапе</li>
+            <li>Формулы из PDF можно забирать в один клик</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="amadeus">
+    <div class="container">
+      <div class="workflow-layout">
+        <div class="workflow-text reveal">
+          <span class="section-tag">Amadeus</span>
+          <h2>Познакомься: <span class="gradient-text">Амадеус</span></h2>
+          <p class="showcase-desc">
+            Амадеус — ассистент, который живёт прямо в приложении и видит твой проект:
+            документы, карточки, карту, план. Ему не нужно ничего пересылать и объяснять
+            с нуля — просто скажи словами, что нужно.
+          </p>
+          <ul class="showcase-list">
+            <li>Соберёт колоду карточек по конспекту лекции</li>
+            <li>Достроит майнд-мап по документам проекта</li>
+            <li>Распланирует повторения до самого экзамена</li>
+            <li>Сделает интерактивную демонстрацию к сложной теме</li>
+          </ul>
+          <p class="showcase-desc">
+            Ты учишься — рутину берёт на себя он.
+          </p>
+        </div>
+        <div class="chat-demo reveal" id="chat-demo">
+          <div class="chat-window">
+            <div class="demo-titlebar">
+              <span class="dot red"></span><span class="dot gold"></span><span class="dot green"></span>
+              <span class="demo-title">Amadeus</span>
+            </div>
+            <div class="chat-body">
+              <div class="chat-msg user chat-step">Амадеус, разбери лекцию по пределам и подготовь мне повторение</div>
+              <div class="chat-msg ai chat-step">Принято! Читаю «Лекция 3 — Пределы.pdf»…</div>
+              <div class="chat-action chat-step"><span class="chat-check">✓</span> Колода «Пределы» — 18 карточек</div>
+              <div class="chat-action chat-step"><span class="chat-check">✓</span> Майнд-мап: +7 понятий, +9 связей</div>
+              <div class="chat-action chat-step"><span class="chat-check">✓</span> Повторения расставлены в планере</div>
+              <div class="chat-msg ai chat-step">Готово! Начни с карточек — это займёт минут шесть.</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -240,34 +374,34 @@
           <span>Браузер + 10 вкладок</span>
         </div>
         <div class="compare-row">
-          <span>Размер</span>
-          <span class="check">~10 МБ</span>
-          <span class="cross">Гигабайты RAM</span>
+          <span>Всё нужное</span>
+          <span class="check">В одном окне</span>
+          <span class="cross">В десяти вкладках</span>
         </div>
         <div class="compare-row">
-          <span>Данные</span>
-          <span class="check">Локально, SQLite</span>
-          <span class="cross">Облако, подписки</span>
+          <span>Карточка из PDF</span>
+          <span class="check">Один клик</span>
+          <span class="cross">Копипаст и вёрстка</span>
         </div>
         <div class="compare-row">
-          <span>LaTeX</span>
-          <span class="check">KaTeX нативно</span>
-          <span class="cross">Костыли</span>
+          <span>Повторения</span>
+          <span class="check">Само напомнит</span>
+          <span class="cross">«Потом повторю»</span>
         </div>
         <div class="compare-row">
-          <span>Mind-map из AI</span>
-          <span class="check">Автоматически</span>
-          <span class="cross">Вручную</span>
+          <span>Формулы</span>
+          <span class="check">Печатаешь текстом</span>
+          <span class="cross">Скриншоты из учебника</span>
         </div>
         <div class="compare-row">
-          <span>FSRS</span>
-          <span class="check">Встроен</span>
-          <span class="cross">Anki отдельно</span>
+          <span>Структура предмета</span>
+          <span class="check">Карта строится сама</span>
+          <span class="cross">Рисуешь вручную</span>
         </div>
         <div class="compare-row">
-          <span>AI-сессии</span>
-          <span class="check">Ваша авторизация</span>
-          <span class="cross">API-ключи</span>
+          <span>Твои данные</span>
+          <span class="check">Локально, у тебя</span>
+          <span class="cross">В чужом облаке</span>
         </div>
       </div>
     </div>
@@ -282,8 +416,8 @@
           <h2>Скачай <span class="gradient-text">Student Mind</span></h2>
           <p class="download-version">Версия 1.3.0 · Windows x64 · MIT License</p>
           <p class="download-desc">
-            Бесплатно. Без подписок. Ваши проекты, карточки и mind-map хранятся локально
-            в <code>%APPDATA%\io.studentmind.app\</code>
+            Бесплатно и без подписок. Проекты, карточки и карты хранятся локально,
+            на твоём компьютере — учёба остаётся твоей.
           </p>
           <div class="download-buttons">
             <a href="https://github.com/VladislavNadzhip/student-mind/releases/latest" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
@@ -300,30 +434,10 @@
             <ul>
               <li>Windows 10/11 (x64)</li>
               <li>Microsoft Edge WebView2 (обычно уже установлен)</li>
-              <li>Опционально: WSL 2 для Hermes-слота</li>
-              <li>Опционально: Anthropic API key для Examiner</li>
+              <li>Пара минут на установку — и можно учиться</li>
             </ul>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-stack">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">Стек</span>
-        <h2>Построено на <span class="gradient-text">проверенных</span> технологиях</h2>
-      </div>
-      <div class="stack-grid reveal">
-        <div class="stack-item"><span class="stack-name">Tauri 2</span><span class="stack-desc">~10 МБ, Rust backend</span></div>
-        <div class="stack-item"><span class="stack-name">React 18</span><span class="stack-desc">TypeScript + Vite</span></div>
-        <div class="stack-item"><span class="stack-name">SQLite</span><span class="stack-desc">Локальная БД</span></div>
-        <div class="stack-item"><span class="stack-name">ts-fsrs</span><span class="stack-desc">Spaced repetition</span></div>
-        <div class="stack-item"><span class="stack-name">React Flow</span><span class="stack-desc">Mind-map граф</span></div>
-        <div class="stack-item"><span class="stack-name">KaTeX</span><span class="stack-desc">LaTeX рендер</span></div>
-        <div class="stack-item"><span class="stack-name">pdf.js</span><span class="stack-desc">PDF viewer</span></div>
-        <div class="stack-item"><span class="stack-name">Zustand</span><span class="stack-desc">State management</span></div>
       </div>
     </div>
   </section>
@@ -352,7 +466,9 @@
     }
   }
   </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script type="module" src="three-bg.js"></script>
   <script type="module" src="main.js"></script>
+  <script type="module" src="showcase.js"></script>
 </body>
 </html>
