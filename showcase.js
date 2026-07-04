@@ -37,26 +37,47 @@ if (svg) {
   };
 
   const nodes = [
-    { id: 0, label: 'Производная', x: 280, y: 195, c: 'gold', main: true },
-    { id: 1, label: 'Касательная', x: 110, y: 80, c: 'cyan' },
-    { id: 2, label: 'Правила дифференцирования', x: 400, y: 60, c: 'blue' },
-    { id: 3, label: 'Экстремумы', x: 105, y: 250, c: 'red' },
-    { id: 4, label: 'Теорема Лагранжа', x: 175, y: 345, c: 'blue' },
-    { id: 5, label: 'Ряд Тейлора', x: 445, y: 300, c: 'cyan' },
-    { id: 6, label: 'Градиент', x: 470, y: 170, c: 'red' },
+    { id: 0, label: 'Производная', x: 280, y: 195, c: 'gold', main: true,
+      desc: 'Скорость изменения функции: предел отношения приращения функции к приращению аргумента. Центральное понятие всей темы.' },
+    { id: 1, label: 'Касательная', x: 110, y: 80, c: 'cyan',
+      desc: 'Прямая, касающаяся графика в точке. Её угловой коэффициент равен производной в этой точке — это и есть геометрический смысл производной.' },
+    { id: 2, label: 'Правила дифференцирования', x: 400, y: 60, c: 'blue',
+      desc: 'Сумма, произведение, частное, цепное правило. Набор приёмов, чтобы считать любую производную быстро и без ошибок.' },
+    { id: 3, label: 'Экстремумы', x: 105, y: 250, c: 'red',
+      desc: 'Максимумы и минимумы функции. В точках экстремума производная обращается в ноль — так их и ищут.' },
+    { id: 4, label: 'Теорема Лагранжа', x: 175, y: 345, c: 'blue',
+      desc: 'На гладкой дуге найдётся точка, где касательная параллельна хорде: f(b) − f(a) = f′(c)(b − a).' },
+    { id: 5, label: 'Ряд Тейлора', x: 445, y: 300, c: 'cyan',
+      desc: 'Приближение функции многочленом, построенным по её производным в одной точке. Чем больше членов — тем точнее.' },
+    { id: 6, label: 'Градиент', x: 470, y: 170, c: 'red',
+      desc: 'Вектор из частных производных. Показывает направление наискорейшего роста функции — производная в многомерном мире.' },
   ];
-  const edges = [ [0,1], [0,2], [0,3], [0,4], [0,5], [0,6], [3,4], [5,2] ];
+  const edges = [
+    [0, 1, 'геом. смысл'],
+    [0, 2, 'как считать'],
+    [0, 3, 'f′(x) = 0'],
+    [0, 4, 'среднее значение'],
+    [0, 5, 'приближение'],
+    [0, 6, 'обобщение'],
+    [3, 4, 'доказательство'],
+    [5, 2, 'почленный вывод'],
+  ];
 
   nodes.forEach((n, i) => {
     n.bx = n.x; n.by = n.y;   // базовая позиция (меняется при перетаскивании)
     n.phase = i * 1.7;
   });
 
-  const edgeEls = edges.map(([a, b]) => {
+  const edgeEls = edges.map(([a, b, label]) => {
     const line = document.createElementNS(NS, 'line');
     line.setAttribute('class', 'mm-edge');
     svg.appendChild(line);
-    return { line, a, b };
+    const text = document.createElementNS(NS, 'text');
+    text.setAttribute('class', 'mm-edge-label');
+    text.setAttribute('text-anchor', 'middle');
+    text.textContent = label;
+    svg.appendChild(text);
+    return { line, text, a, b };
   });
 
   const nodeEls = nodes.map((n) => {
@@ -87,15 +108,35 @@ if (svg) {
   });
 
   let dragging = null;
+  let selected = null;
   const svgPoint = (e) => {
     const pt = svg.createSVGPoint();
     pt.x = e.clientX; pt.y = e.clientY;
     return pt.matrixTransform(svg.getScreenCTM().inverse());
   };
 
+  const infoTitle = document.getElementById('mm-info-title');
+  const infoDesc = document.getElementById('mm-info-desc');
+
+  function selectNode(i) {
+    selected = i;
+    nodeEls.forEach((el, j) => el.classList.toggle('selected', j === i));
+    if (i === null) {
+      infoTitle.textContent = 'Выбери понятие';
+      infoTitle.style.color = '';
+      infoDesc.textContent = 'Нажми на любой узел — здесь появится его описание, как в приложении.';
+    } else {
+      infoTitle.textContent = nodes[i].label;
+      infoTitle.style.color = COLORS[nodes[i].c];
+      infoDesc.textContent = nodes[i].desc;
+    }
+  }
+
   nodeEls.forEach((g, i) => {
+    let downAt = null;
     g.addEventListener('pointerdown', (e) => {
       dragging = i;
+      downAt = { x: e.clientX, y: e.clientY };
       g.setPointerCapture(e.pointerId);
       g.classList.add('dragging');
       e.preventDefault();
@@ -106,7 +147,15 @@ if (svg) {
       nodes[i].bx = Math.max(50, Math.min(510, p.x));
       nodes[i].by = Math.max(30, Math.min(370, p.y));
     });
-    const release = () => { if (dragging === i) { dragging = null; g.classList.remove('dragging'); } };
+    const release = (e) => {
+      if (dragging !== i) return;
+      dragging = null;
+      g.classList.remove('dragging');
+      // короткий тап без движения — это клик: показываем описание
+      const moved = downAt ? Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) : 99;
+      if (moved < 5) selectNode(selected === i ? null : i);
+      downAt = null;
+    };
     g.addEventListener('pointerup', release);
     g.addEventListener('pointercancel', release);
   });
@@ -119,11 +168,13 @@ if (svg) {
       n.y = n.by + Math.cos(s * 0.55 + n.phase * 1.3) * 3.5 * idle;
       nodeEls[i].setAttribute('transform', `translate(${n.x}, ${n.y})`);
     });
-    edgeEls.forEach(({ line, a, b }) => {
+    edgeEls.forEach(({ line, text, a, b }) => {
       line.setAttribute('x1', nodes[a].x);
       line.setAttribute('y1', nodes[a].y);
       line.setAttribute('x2', nodes[b].x);
       line.setAttribute('y2', nodes[b].y);
+      text.setAttribute('x', (nodes[a].x + nodes[b].x) / 2);
+      text.setAttribute('y', (nodes[a].y + nodes[b].y) / 2 - 5);
     });
     requestAnimationFrame(tick);
   }
